@@ -2,18 +2,35 @@
 
 import os.path
 import string
-path = "C:\\Users\\DEVESA\\AppData\\Local\\Programs\\Python\\Python36-32\\truco\\"
+import json
+
+path = "C:/Users/DEVESA/Documents/GitHub/trucopython/truco/"
+
+'''
+@func:  leer_config
+@param: EMPTY
+@desc:  Lee el path de formato JSON,
+        Cierra el archivo,
+        Identifica los parametros
+            -> JUGADORES, PUNTAJE Y FLOR
+        Los guarda y los exporta al programa.
+
+'''
 
 def leer_config():
-    file = open(path + "config.txt", "r")
-    cont = file.read()
-    JUGADORES = cont.get_value("JUGADORES=")
-    print(cont)
-    print(JUGADORES)
+    file = open(path + "config.json", "r")
+    archivo = file.read()
     file.close()
-	
-def obtener_de(string, key):
     
-
-	
-leer_config()
+    configuracion = json.loads(archivo)
+    JUGADORES = configuracion["JUGADORES"]
+    PUNTAJE = configuracion["PUNTAJE"]
+    FLOR = configuracion["FLOR"]
+    return(JUGADORES,PUNTAJE,FLOR)
+    end
+    
+'''
+Testing:
+    Modificar el archivo config.json y ver los resultados con:
+    print(leer_config());
+'''

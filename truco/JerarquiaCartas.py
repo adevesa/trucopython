@@ -12,7 +12,9 @@ jerarquiaTruco = {("ESPADA",1): 1, ("BASTO",1): 2, ("ESPADA",7): 3, ("ORO",7): 4
                   ("ESPADA",5): 13, ("BASTO",5): 13, ("COPA",5): 13, ("ORO",5): 13,
                   ("ESPADA",4): 14, ("BASTO",4): 14, ("COPA",4): 14, ("ORO",4): 14 }
                 
-			
+'''
+    No me gusta JUGADOR 1 Y 2, REVISAR, reemplazar por, es mano o no.
+'''
 def le_gana_a(*cartas):
     jugadores = len(cartas)
     

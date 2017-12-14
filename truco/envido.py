@@ -8,7 +8,8 @@
 ## CASO MULTIPLE: 2 O MAS PALOS REPETIDOS
 ## SE AGREGAN 20 Y SE SUMAN LOS PALOS DISTINTOS
 ## EJEMPLO:
-## ESPADA 1 , ESPADA 2 = 23
+## ESPADA 1 , ESPADA 2: = 23
+## PALO 10, PALO 11: = 20
 
 from IA import (querer_envido,
                 querer_truco,
@@ -20,6 +21,14 @@ from Textos import (quiero_no_quiero_envido,
                    	respuesta_envido,
                     el_envido_primero,
                     mostrar_envido)					
+
+'''
+@func: tanto
+@param: cartas
+@desc:  dado una mano de 3 cartas, devuelve su puntaje para el envido.
+        Primero se fija si las 3 cartas son distintas, si lo son, devuelve su puntaje individual
+        sino, devuelve su puntaje teniendo en cuenta que hay mas de un palo igual
+'''
 				
 def tanto(cartas):
     if son_palos_distintos(cartas):
@@ -27,12 +36,27 @@ def tanto(cartas):
     else:
         puntillos = maximo_puntaje_multiple(cartas)
     return puntillos
+    end
+'''
+@func: son_palos_distintos
+@param: cartas
+@desc:  dado una mano de 3 cartas, devuelve True SI todas sus cartas son de distintos palos.
+        En caso de que haya un par igual, devuelve False.
+'''
 
 def son_palos_distintos(cartas):
     if (cartas[0][0] == cartas[1][0] or
         cartas[1][0] == cartas[2][0] or
         cartas[2][0] == cartas[0][0]): return False
     else: return True
+
+'''
+@func: maximo_puntaje_individual
+@param: cartas
+@desc:  dado una mano de 3 cartas, devuelve su puntaje para el envido.
+        Primero se fija si las 3 cartas son distintas, si lo son, devuelve su puntaje individual
+        sino, devuelve su puntaje teniendo en cuenta que hay mas de un palo igual
+'''
 
 def maximo_puntaje_individual(cartas):
     maximo = 0
@@ -41,6 +65,15 @@ def maximo_puntaje_individual(cartas):
             if maximo == 0: maximo = 0
         elif carta[1] > maximo: maximo = carta[1]
     return maximo
+
+'''
+@func: maximo_puntaje_multiple
+@param: cartas
+@desc:  dado una mano de 3 cartas, devuelve su puntaje para el envido.
+        Suma el puntaje de dos palos iguales.
+        Si hay 3 palos iguales, elige las dos mejores.
+       
+'''
 
 def maximo_puntaje_multiple(cartas):
     maximoOro = 20
@@ -61,9 +94,21 @@ def maximo_puntaje_multiple(cartas):
 
     return maximo
 
+'''
+@func: tres_palos_iguales
+@param: cartas
+@desc: Si los tres palos son iguales devuelve True, sino false.
+'''
+
 def tres_palos_iguales(cartas):
     if cartas[0][0] == cartas[1][0] and cartas[1][0] == cartas[2][0]: return True
     else: False
+
+'''
+@func: los_dos_mejores
+@param: cartas
+@desc: devuelve el puntaje de las mejores cartas de las tres iguales.
+'''
 
 def los_dos_mejores(cartas): 
     carta1 = 0 if es_doce_once_o_diez(cartas[0]) else cartas[0][1] ##TERNARY OPERATORS 
@@ -74,9 +119,20 @@ def los_dos_mejores(cartas):
     lista.sort()
     return 20 + lista[2] + lista[1]
 
+'''
+@func: es_doce_once_o_diez
+@param: carta
+@desc: retorna True si es 10 11 o 12.
+'''
+
 def es_doce_once_o_diez(carta):
     if carta[1] == 12 or carta[1] == 11 or carta[1] == 10: return True
     else: return False
+
+'''
+    Respuestas y procesos... REVISAR.
+'''
+
     
 def pelea_de_envidos(C1,C2,TURNO):
     if tanto(C2) > tanto(C1):

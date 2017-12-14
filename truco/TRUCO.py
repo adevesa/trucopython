@@ -31,6 +31,8 @@ from IA import (lanzar_carta,
                 querer_retruco,
                 querer_vale_cuatro,
                 irse_al_mazo)
+
+
                 
 class juegoTruco():
     Jugadores = (("JUGADOR 1", 0),
